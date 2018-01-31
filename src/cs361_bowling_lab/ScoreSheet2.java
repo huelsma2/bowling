@@ -56,7 +56,7 @@ public class ScoreSheet2 {
 	 * or number value) of the score
 	 * @return a string of the frame's score (strike, spare, number value)
 	 */
-	private boolean doThrow(int pinsHit)
+	public boolean doThrow(int pinsHit)
 	{
 		if(pinsHit>_pins)
 			return false;
@@ -84,7 +84,7 @@ public class ScoreSheet2 {
 		return true;
 	}
 	
-	private void nextFrame(String score)
+	public void nextFrame(String score)
 	{
 		_frames[_currentFrame] = score;
 		_throw=0;
@@ -92,7 +92,7 @@ public class ScoreSheet2 {
 		setPins();
 	}
 
-	private void setPins()
+	public void setPins()
 	{
 		_pins=10;
 	}
