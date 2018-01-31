@@ -4,6 +4,8 @@ import java.util.Random;
 
 public class ScoreSheet2 {
 	
+	int arg = 5;
+	
 	private static final int MAXPINS = 10;
 	private static final int MAXTURNS = 21;
 
