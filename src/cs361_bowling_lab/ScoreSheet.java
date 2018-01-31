@@ -30,7 +30,7 @@ public class ScoreSheet {
 		if(endFrame <0 || endFrame >9) 
 			throw new IllegalArgumentException("Cannot end outside of the frame bounds: [0,9]");
 		if(startFrame > endFrame)
-			throw new IllegalArgumentException("Cannot end on an earlier frame than start")
+			throw new IllegalArgumentException("Cannot end on an earlier frame than start");
 		
 		_currentFrame=startFrame;
 		for(int i = startFrame; i <= endFrame; ++i)

@@ -12,7 +12,7 @@ public class ScoreSheet2 {
 	private static final int MAXTURNS = 21;
 
 	private String[] _frames = new String[10];
-	private int _currentFrame = 0;
+	private int _currentFrame = 0, _throw = 0;
 	private int _pins = 10;
 	private int[] _score = new int[MAXTURNS];
 	
@@ -55,6 +55,41 @@ public class ScoreSheet2 {
 	 * or number value) of the score
 	 * @return a string of the frame's score (strike, spare, number value)
 	 */
+	private boolean doThrow(int pinsHit)
+	{
+		if(pinsHit>_pins)
+			return false;
+		_pins-=pinsHit;
+		if(pinsHit==MAXPINS)
+			{
+			nextFrame("strike");
+			return true;
+			}
+		else if(_pins==0)
+			{
+			nextFrame("spare");
+			return true;
+			}
+		String ret = ""+(10-_pins);
+		if(_throw==1)
+		{
+			nextFrame(""+Integer.parseInt(_frames[_currentFrame]) + Integer.parseInt(ret));
+		}
+		else
+			{
+			_frames[_currentFrame] = ret;
+			++_throw;
+			}
+		return true;
+	}
+	
+	private void nextFrame(String score)
+	{
+		_frames[_currentFrame] = score;
+		_throw=0;
+		++_currentFrame;
+		setPins();
+	}
 
 	private void setPins()
 	{
