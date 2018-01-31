@@ -1,20 +1,16 @@
 package cs361_bowling_lab;
 
-import java.util.Random;
 
 public class ScoreSheet2 {
 	
-	int arg = 5;
-	
-	
-	int orange = 56;
 	private static final int MAXPINS = 10;
 	private static final int MAXTURNS = 21;
 
-	private String[] _frames = new String[10];
-	private int _currentFrame = 0, _throw = 0;
-	private int _pins = 10;
-	private int[] _score = new int[MAXTURNS];
+	private String[] _frames;
+	private int _currentFrame;
+	private	int _throw;
+	private int _pins;
+	private int[] _score;
 	
 	
 	/**
@@ -23,6 +19,11 @@ public class ScoreSheet2 {
 	 */
 	public ScoreSheet2(int numFrames)
 	{
+		String[] _frames = new String[10];
+		_currentFrame = 0;
+		_throw = 0;
+		_pins = 10;
+		int[] _score = new int[MAXTURNS];
 		
 	}
 	
