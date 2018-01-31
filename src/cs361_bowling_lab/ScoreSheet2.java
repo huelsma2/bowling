@@ -4,7 +4,11 @@ import java.util.Random;
 
 public class ScoreSheet2 {
 	
+<<<<<<< HEAD
 	int test = 0;
+=======
+	int arg = 5;
+>>>>>>> branch 'master' of https://github.com/huelsma2/bowling.git
 	
 	private static final int MAXPINS = 10;
 	private static final int MAXTURNS = 21;
