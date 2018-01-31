@@ -3,12 +3,11 @@ package cs361_bowling_lab;
 import java.util.Random;
 
 public class ScoreSheet2 {
-
-	int test = 0;
-
-	int arg = 5;
-
 	
+	int arg = 5;
+	
+	
+	int orange = 56;
 	private static final int MAXPINS = 10;
 	private static final int MAXTURNS = 21;
 
