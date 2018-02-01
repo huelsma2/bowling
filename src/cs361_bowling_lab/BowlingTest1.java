@@ -5,10 +5,10 @@ import org.junit.Test;
 import org.junit.internal.runners.JUnit38ClassRunner;
 
 public class BowlingTest1 {
-	ScoreSheet2 testSuite1 = new ScoreSheet2(0);
-	ScoreSheet2 testSuite2 = new ScoreSheet2(0);
-	ScoreSheet2 testSuite3 = new ScoreSheet2(0);
-	ScoreSheet2 testSuite4 = new ScoreSheet2(0);
+	ScoreSheet2 testSuite1 = new ScoreSheet2();
+	ScoreSheet2 testSuite2 = new ScoreSheet2();
+	ScoreSheet2 testSuite3 = new ScoreSheet2();
+	ScoreSheet2 testSuite4 = new ScoreSheet2();
 	
 	
 	
