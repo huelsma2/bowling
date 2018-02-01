@@ -21,7 +21,7 @@ public class BowlingTest1 {
 		assertTrue(testSuite1.doThrow(3));
 		assertEquals(3, testSuite1.getScore(0));
 		assertEquals(3, testSuite1.getFinalScore()); 
-		assertEquals(1, testSuite1.getCurrentFrame()); 
+		assertEquals(0, testSuite1.getCurrentFrame()); //changed 1 to 0, because the throw shuold not finish the first frame - AH
 		
 	}
 	
@@ -71,7 +71,7 @@ public class BowlingTest1 {
 		assertEquals(7, testSuite3.getScore(1));
 		
 		assertEquals(10, testSuite3.getFinalScore()); 	
-		assertEquals(2, testSuite3.getCurrentFrame());
+		assertEquals(1, testSuite3.getCurrentFrame()); //changed 2 to 1, because the third throw should not finish the second frame - AH
 		
 	}
 	

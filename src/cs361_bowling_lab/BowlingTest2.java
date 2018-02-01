@@ -20,24 +20,27 @@ public class BowlingTest2 {
 	
 	@Test
 	public void testSpareCountsNextFrameScore() {
-		assertEquals(0, scoreSheet1.getScore(1));
+		//Changed the frame values to be one less (starting from index 0, rather than index 1) -AH
+		assertEquals(0, scoreSheet1.getScore(0));
 		assertEquals(0, scoreSheet1.getFinalScore());
 		
 		assertTrue(scoreSheet1.doThrow(5));
-		assertEquals(5,scoreSheet1.getScore(1));
+		assertEquals(5,scoreSheet1.getScore(0));
 		assertEquals(5, scoreSheet1.getFinalScore());
 		
 		assertTrue(scoreSheet1.doThrow(5));
-		assertEquals(10,scoreSheet1.getScore(1));
+		assertEquals(10,scoreSheet1.getScore(0));
 		assertEquals(10, scoreSheet1.getFinalScore());
 		
 		assertTrue(scoreSheet1.doThrow(4));
-		assertEquals(4, scoreSheet1.getScore(2));
-		assertEquals(14, scoreSheet1.getFinalScore());
+		assertEquals(4, scoreSheet1.getScore(1));
+		assertEquals(18, scoreSheet1.getFinalScore());
+		//changed 14 to 18, as a spare frame's score should include the next frame's score - AH
 		
 		assertTrue(scoreSheet1.doThrow(5));
-		assertEquals(9, scoreSheet1.getScore(2));
-		assertEquals(19, scoreSheet1.getFinalScore());
+		assertEquals(9, scoreSheet1.getScore(1));
+		assertEquals(28, scoreSheet1.getFinalScore());
+		//changed 19 to 28, as a spare frame's score should include the next frame's score - AH
 		
 	}
 	
@@ -50,20 +53,23 @@ public class BowlingTest2 {
 	
 	@Test
 	public void testStrikeMovesToNextFrame() {
-		assertEquals(0, scoreSheet2.getScore(1));
+		//Changed the frame values to be one less (starting from index 0, rather than index 1) -AH
+		assertEquals(0, scoreSheet2.getScore(0));
 		assertEquals(0, scoreSheet2.getFinalScore());
 		
 		assertTrue(scoreSheet2.doThrow(10));
-		assertEquals(10, scoreSheet2.getScore(1));
+		assertEquals(10, scoreSheet2.getScore(0));
 		assertEquals(10, scoreSheet2.getFinalScore());
 		
 		assertTrue(scoreSheet2.doThrow(5));
-		assertEquals(5, scoreSheet2.getScore(2));
-		assertEquals(15, scoreSheet2.getFinalScore());
+		assertEquals(5, scoreSheet2.getScore(1));
+		assertEquals(20, scoreSheet2.getFinalScore()); 
+		//changed 15 to 20, as a strike frame's score should include the next 2 frame's scores - AH
 		
 		assertTrue(scoreSheet2.doThrow(3));
-		assertEquals(8, scoreSheet2.getScore(2));
-		assertEquals(18, scoreSheet2.getFinalScore());
+		assertEquals(8, scoreSheet2.getScore(1));
+		assertEquals(26, scoreSheet2.getFinalScore());
+		//changed 18 to 26, as a strike frame's score should include the next 2 frame's scores - AH
 		
 	}
 	
@@ -76,17 +82,20 @@ public class BowlingTest2 {
 	
 	@Test
 	public void testStrikeCountsNextFrameScores() {
-		assertEquals(0, scoreSheet3.getScore(1));
+		//Changed the frame values to be one less (starting from index 0, rather than index 1) -AH
+		assertEquals(0, scoreSheet3.getScore(0));
 		assertEquals(0, scoreSheet3.getFinalScore());
 		assertTrue(scoreSheet3.doThrow(10));
-		assertEquals(10, scoreSheet3.getScore(1));
+		assertEquals(10, scoreSheet3.getScore(0));
 		assertEquals(10, scoreSheet3.getFinalScore());
 		assertTrue(scoreSheet3.doThrow(10));
-		assertEquals(10, scoreSheet3.getScore(2));
-		assertEquals(20, scoreSheet3.getFinalScore());
-		assertTrue(scoreSheet3.doThrow(10));
-		assertEquals(10, scoreSheet3.getScore(3));
+		assertEquals(10, scoreSheet3.getScore(1));
 		assertEquals(30, scoreSheet3.getFinalScore());
+		//changed 20 to 30, as a strike frame's score should include the next 2 frame's scores - AH
+		assertTrue(scoreSheet3.doThrow(10));
+		assertEquals(10, scoreSheet3.getScore(2));
+		assertEquals(60, scoreSheet3.getFinalScore());
+		//changed 30 to 60, as a strike frame's score should include the next 2 frame's scores - AH
 		
 	}
 	
@@ -101,20 +110,21 @@ public class BowlingTest2 {
 	public void testSpareOnLastFrame() {
 		assertEquals(0, scoreSheet4.getScore(1));
 		assertEquals(0, scoreSheet4.getFinalScore());
-		assertTrue(scoreSheet4.doThrow(10));
-		assertTrue(scoreSheet4.doThrow(10));
-		assertTrue(scoreSheet4.doThrow(5));
+		assertTrue(scoreSheet4.doThrow(10)); //10+10+9
+		assertTrue(scoreSheet4.doThrow(10)); //10+9+10
+		assertTrue(scoreSheet4.doThrow(5));  //9
 		assertTrue(scoreSheet4.doThrow(4));
-		assertTrue(scoreSheet4.doThrow(10));
-		assertTrue(scoreSheet4.doThrow(10));
-		assertTrue(scoreSheet4.doThrow(10));
-		assertTrue(scoreSheet4.doThrow(10));
-		assertTrue(scoreSheet4.doThrow(10));
-		assertTrue(scoreSheet4.doThrow(10));
+		assertTrue(scoreSheet4.doThrow(10)); //10+10+10
+		assertTrue(scoreSheet4.doThrow(10)); //10+10+10
+		assertTrue(scoreSheet4.doThrow(10)); //10+10+10
+		assertTrue(scoreSheet4.doThrow(10)); //10+10+10
+		assertTrue(scoreSheet4.doThrow(10)); //10+10+10
+		assertTrue(scoreSheet4.doThrow(10)); //10+10
+		assertTrue(scoreSheet4.doThrow(5));  //10
 		assertTrue(scoreSheet4.doThrow(5));
-		assertTrue(scoreSheet4.doThrow(5));
-		assertEquals(10, scoreSheet4.getScore(10));
-		assertEquals(99, scoreSheet4.getFinalScore());
+		assertEquals(10, scoreSheet4.getScore(9)); //Changed 10 to 9, for starting frames on index 0 - AH
+		assertEquals(247, scoreSheet4.getFinalScore());
+		//changed 99 to 247, as a strike frame's score should include the next 2 frame's scores - AH
 		
 	}
 	
@@ -129,22 +139,24 @@ public class BowlingTest2 {
 	public void testStrikeOnLastFrames() {
 		assertEquals(0, scoreSheet5.getScore(1));
 		assertEquals(0, scoreSheet5.getFinalScore());
-		assertTrue(scoreSheet5.doThrow(10));
-		assertTrue(scoreSheet5.doThrow(5));
+		assertTrue(scoreSheet5.doThrow(10)); //score for this frame would be 29
+		assertTrue(scoreSheet5.doThrow(5));  //score for this frame would be 9
 		assertTrue(scoreSheet5.doThrow(4));
-		assertTrue(scoreSheet5.doThrow(10));
-		assertTrue(scoreSheet5.doThrow(10));
-		assertTrue(scoreSheet5.doThrow(10));
+		assertTrue(scoreSheet5.doThrow(10)); //score for this frame would be 30
+		assertTrue(scoreSheet5.doThrow(10)); //score for this frame would be 30
+		assertTrue(scoreSheet5.doThrow(10)); //score for this frame would be 30
+		assertTrue(scoreSheet5.doThrow(5));  //score for this frame would be 20
 		assertTrue(scoreSheet5.doThrow(5));
-		assertTrue(scoreSheet5.doThrow(5));
-		assertTrue(scoreSheet5.doThrow(10));
-		assertTrue(scoreSheet5.doThrow(10));
-		assertTrue(scoreSheet5.doThrow(10));
-		assertTrue(scoreSheet5.doThrow(10));
-		assertEquals(10, scoreSheet5.getScore(8));
+		assertTrue(scoreSheet5.doThrow(10)); //score for this frame would be 30
+		assertTrue(scoreSheet5.doThrow(10)); //score for this frame would be 30
+		assertTrue(scoreSheet5.doThrow(10)); //score for this frame would be 20
+		assertTrue(scoreSheet5.doThrow(10)); //score for this frame would be 10
+		
+		//Changed 8, 9 & 10 to 7, 8, & 9, respectively, as to start frames from index 0 - AH
+		assertEquals(30, scoreSheet5.getScore(7));
+		assertEquals(20, scoreSheet5.getScore(8));
 		assertEquals(10, scoreSheet5.getScore(9));
-		assertEquals(10, scoreSheet5.getScore(10));
-		assertEquals(99, scoreSheet5.getFinalScore());
+		assertEquals(238, scoreSheet5.getFinalScore());
 		
 	}
 

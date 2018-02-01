@@ -10,7 +10,6 @@ public class ScoreSheet2 {
 	private int _currentFrame;
 	private	int _throw;
 	private int _pins;
-	private int[] _score;
 	
 	
 	/**
@@ -19,11 +18,10 @@ public class ScoreSheet2 {
 	 */
 	public ScoreSheet2(int numFrames)
 	{
-		String[] _frames = new String[10];
+		_frames = new String[10];
 		_currentFrame = 0;
 		_throw = 0;
 		_pins = 10;
-		int[] _score = new int[MAXTURNS];
 		
 	}
 	
@@ -34,8 +32,33 @@ public class ScoreSheet2 {
 	 */
 	
 	
-	public int getScore(int _currentFrame) {
-		return _score[_currentFrame];
+	public int getScore(int frame) {
+		if(frame > 9 || frame<0) return 0;
+		if(_frames[frame]==null) return 0;
+		if(_frames[frame].equals("strike"))
+			return 10+rawScore(frame+1) + rawScore(frame+2);
+		if(_frames[frame].equals("spare"))
+			return 10+rawScore(frame+1);
+		try{
+			int i = Integer.parseInt(_frames[frame]);
+			return i;
+			}
+		catch(NumberFormatException e) {return 0;}
+	}
+	
+	private int rawScore(int frame)
+	{
+		if(frame > 9 || frame<0) return 0;
+		if(_frames[frame]==null) return 0;
+		if(_frames[frame].equals("strike"))
+			return 10;
+		if(_frames[frame].equals("spare"))
+			return 10;
+		try{
+			int i = Integer.parseInt(_frames[frame]);
+			return i;
+			}
+		catch(NumberFormatException e) {return 0;}
 	}
 	
 	public int getCurrentFrame() {
@@ -45,19 +68,20 @@ public class ScoreSheet2 {
 	public int getFinalScore() {
 		int total = 0;
 		for (int i = 0; i < 10; i++) {
-			total += _score[i];
+			total += getScore(i);
 		}
 		return total;
 	}
 	
 
 	/**
-	 * Throws a bowling ball, and returns the type (strike, spare,
-	 * or number value) of the score
-	 * @return a string of the frame's score (strike, spare, number value)
+	 * Throws a bowling ball, and sets the frame's score according to the pins hit.
+	 * @return returns true if the throw was successful, false, if not.
 	 */
 	public boolean doThrow(int pinsHit)
 	{
+		if(_currentFrame > 9 || _currentFrame<0)
+			return false;
 		if(pinsHit>_pins)
 			return false;
 		_pins-=pinsHit;
@@ -71,10 +95,10 @@ public class ScoreSheet2 {
 			nextFrame("spare");
 			return true;
 			}
-		String ret = ""+(10-_pins);
+		String ret = ""+pinsHit;
 		if(_throw==1)
 		{
-			nextFrame(""+Integer.parseInt(_frames[_currentFrame]) + Integer.parseInt(ret));
+			nextFrame(""+(rawScore(_currentFrame) + pinsHit));
 		}
 		else
 			{
@@ -96,11 +120,6 @@ public class ScoreSheet2 {
 	{
 		_pins=10;
 	}
-	
-	/**
-	 * Hit a random amount of pins from the pins left standing
-	 * @return number of pins knocked down
-	 */
 
 	
 }
