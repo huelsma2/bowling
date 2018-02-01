@@ -4,6 +4,11 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 
+/** Second Tests of ScoreSheet2 
+ * 
+ * @author Andrew Y
+ *
+ */
 public class BowlingTest2 {
 	ScoreSheet2 scoreSheet1 = new ScoreSheet2();
 	ScoreSheet2 scoreSheet2 = new ScoreSheet2();

@@ -4,6 +4,13 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.internal.runners.JUnit38ClassRunner;
 
+
+/** First Tests of ScoreSheet2 
+ * 
+ * @author Michael D
+ *
+ */
+
 public class BowlingTest1 {
 	ScoreSheet2 testSuite1 = new ScoreSheet2();
 	ScoreSheet2 testSuite2 = new ScoreSheet2();
@@ -19,7 +26,7 @@ public class BowlingTest1 {
 	@Test
 	public void testOneThrow() {
 		assertTrue(testSuite1.doThrow(3));
-		assertEquals(3, testSuite1.getScore(0));
+		assertEquals(3, testSuite1.getScore(1));
 		assertEquals(3, testSuite1.getFinalScore()); 
 		assertEquals(0, testSuite1.getCurrentFrame()); //changed 1 to 0, because the throw shuold not finish the first frame - AH
 		
@@ -34,10 +41,10 @@ public class BowlingTest1 {
 	@Test
 	public void testTwoThrows() {
 		assertTrue(testSuite2.doThrow(1));
-		assertEquals(1, testSuite2.getScore(0));
+		assertEquals(1, testSuite2.getScore(1));
 		
 		assertTrue(testSuite2.doThrow(2));
-		assertEquals(3, testSuite2.getScore(0)); 
+		assertEquals(3, testSuite2.getScore(1)); 
 		
 		assertEquals(3, testSuite2.getFinalScore()); 	
 		assertEquals(1, testSuite2.getCurrentFrame());  
@@ -56,19 +63,19 @@ public class BowlingTest1 {
 	@Test
 	public void testThreeThrows() {
 		assertTrue(testSuite3.doThrow(1));
-		assertEquals(1, testSuite3.getScore(0));
+		assertEquals(1, testSuite3.getScore(1));
 		
 		assertTrue(testSuite3.doThrow(2));
-		assertEquals(3, testSuite3.getScore(0));
+		assertEquals(3, testSuite3.getScore(1));
 		
 		assertTrue(testSuite3.doThrow(7));
-		assertEquals(7, testSuite3.getScore(1));
+		assertEquals(7, testSuite3.getScore(2));
 		
-		assertEquals(3, testSuite3.getScore(0));
-		assertEquals(7, testSuite3.getScore(1));
+		assertEquals(3, testSuite3.getScore(1));
+		assertEquals(7, testSuite3.getScore(2));
 	
-		assertEquals(3, testSuite3.getScore(0)); 	
-		assertEquals(7, testSuite3.getScore(1));
+		assertEquals(3, testSuite3.getScore(1)); 	
+		assertEquals(7, testSuite3.getScore(2));
 		
 		assertEquals(10, testSuite3.getFinalScore()); 	
 		assertEquals(1, testSuite3.getCurrentFrame()); //changed 2 to 1, because the third throw should not finish the second frame - AH
